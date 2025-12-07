@@ -38,7 +38,8 @@ const Posts = () => {
 
   const addPost = async (e: any) => {
     e.preventDefault();
-    const newPost = {title};
+    const authorId = getUserId();
+    const newPost = {title, authorId};
     await axios.post('http://localhost:5000/api/post/posts', newPost);
     setTitle('');
     fetchPosts();
