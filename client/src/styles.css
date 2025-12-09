@@ -60,3 +60,49 @@ input[type=password] {
 button[type=submit] {
   width: 100%;
 }
+
+.PostCard {
+  border: 1px solid brown;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  background-color: bisque;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.PostContent {
+  flex-grow: 1;
+  margin-right: 20px;
+}
+
+.PostActions {
+  display: flex;
+  gap: 10px;
+}
+
+.PostButton {
+  padding: 4px 9px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+}
+
+.PostButtonEdit {
+  background-color: aqua;
+}
+
+.PostButtonEdit:hover {
+  background-color: darkcyan;
+}
+
+.PostButtonDel {
+  background-color: chocolate;
+}
+
+.PostButtonDel:hover {
+  background-color: firebrick;
+}

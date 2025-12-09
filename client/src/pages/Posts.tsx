@@ -2,8 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import AuthButton from "../components/LogoutButton";
 import { jwtDecode } from "jwt-decode";
+import PostRecord from "../components/PostRecord";
 
-interface toDo {
+interface Post {
   id: number
   title: string
 }
@@ -23,7 +24,7 @@ const getUserId = () => {
 }
 
 const Posts = () => {
-  const [posts, setPosts] = useState<toDo[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
   const [title, setTitle] = useState('');
 
   const fetchPosts = async () => {
@@ -74,13 +75,14 @@ const Posts = () => {
       </form>
         <h1>Список задач</h1>
         {posts.map((post) => (
-          <div>
-            <p>
-              {post.title}
-              <button onClick={() => updPost(post.id, post.title)}>Изменить</button>
-              <button onClick={() => delPost(post.id)}>Удалить</button>
-            </p>
-          </div>
+          <PostRecord title={post.title} id={post.id} updPost={updPost} delPost={delPost} />
+          // <div>
+          //   <p>
+          //     {post.title}
+          //     <button onClick={() => updPost(post.id, post.title)}>Изменить</button>
+          //     <button onClick={() => delPost(post.id)}>Удалить</button>
+          //   </p>
+          // </div>
         ))}
     </div>
   )
