@@ -76,13 +76,6 @@ const Posts = () => {
         <h1>Список задач</h1>
         {posts.map((post) => (
           <PostRecord title={post.title} id={post.id} updPost={updPost} delPost={delPost} />
-          // <div>
-          //   <p>
-          //     {post.title}
-          //     <button onClick={() => updPost(post.id, post.title)}>Изменить</button>
-          //     <button onClick={() => delPost(post.id)}>Удалить</button>
-          //   </p>
-          // </div>
         ))}
     </div>
   )
