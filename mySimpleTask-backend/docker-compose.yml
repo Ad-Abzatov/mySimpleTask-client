@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  postgres:
+    image: "mysql"
+    ports:
+      - "3306:3306/tcp"
+    expose:
+      - "3306/tcp"
+    command: mysql -c 'max_connections=500'
+    environment:
+      POSTGRES_PASSWORD: password
+    volumes:
+      - mysql-data:/var/lib/mysql/data
+    restart: unless-stopped
+volumes:
+  mysql-data:
