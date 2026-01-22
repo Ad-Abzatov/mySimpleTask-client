@@ -4,9 +4,15 @@ import AuthButton from "../components/LogoutButton";
 import { jwtDecode } from "jwt-decode";
 import PostRecord from "../components/PostRecord";
 
+interface SubPost {
+  id: number;
+  title: string;
+}
+
 interface Post {
   id: number
   title: string
+  subPost: string
 }
 
 interface IdField {
@@ -46,12 +52,12 @@ const Posts = () => {
     fetchPosts();
   }
 
-  const delPost = async (id: any) => {
+  const delPost = async (id: number) => {
     await axios.delete(`http://localhost:5000/api/post/posts/${id}`);
     fetchPosts();
   }
 
-  const updPost = async (id: any, data: string) => {
+  const updPost = async (id: number, data: string) => {
     const newData = window.prompt(data, data);
     if (newData !== null) {
       await axios.put(`http://localhost:5000/api/post/posts/${id}`, {title: newData});
@@ -75,7 +81,13 @@ const Posts = () => {
       </form>
         <h1>Список задач</h1>
         {posts.map((post) => (
-          <PostRecord title={post.title} id={post.id} updPost={updPost} delPost={delPost} />
+          <PostRecord
+            title={post.title}
+            id={post.id}
+            updPost={updPost}
+            delPost={delPost}
+            subPost={post.subPost}
+          />
         ))}
     </div>
   )
