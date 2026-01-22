@@ -1,13 +1,19 @@
 import { FC } from "react";
 
-interface PostRecordProps {
-  title: string;
+interface SubPost {
   id: number;
-  updPost: (id: number, title: string) => Promise<void>;
-  delPost: (id: number) => Promise<void>;
+  title: string;
 }
 
-const PostRecord: FC<PostRecordProps> = ({title, id, updPost, delPost}) => {
+interface PostRecordProps {
+  id: number;
+  title: string;
+  updPost: (id: number, title: string) => Promise<void>;
+  delPost: (id: number) => Promise<void>;
+  subPost: string;
+}
+
+const PostRecord: FC<PostRecordProps> = ({title, id, updPost, delPost, subPost}) => {
   const handleUpd = () => {
     updPost(id, title);
   };
@@ -19,6 +25,9 @@ const handleDel = () => {
     <div className="PostCard">
       <div className="PostContent">
         {title}
+        <div>
+          {subPost}
+        </div>
       </div>
       <div className="PostActions">
         <button className="PostButton PostButtonEdit" onClick={handleUpd}>Изменить</button>
