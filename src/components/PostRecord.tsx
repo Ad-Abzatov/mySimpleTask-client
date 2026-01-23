@@ -10,7 +10,7 @@ interface PostRecordProps {
   title: string;
   updPost: (id: number, title: string) => Promise<void>;
   delPost: (id: number) => Promise<void>;
-  subPost: string;
+  subPost: SubPost[];
 }
 
 const PostRecord: FC<PostRecordProps> = ({title, id, updPost, delPost, subPost}) => {
@@ -26,7 +26,15 @@ const handleDel = () => {
       <div className="PostContent">
         {title}
         <div>
-          {subPost}
+          {
+            subPost?.length > 0 ? (
+              subPost.map(subPost => (
+            <div key={subPost.id}>{subPost.title}</div>
+          ))
+            ) : (
+              <div>Пусто</div>
+            )
+          }
         </div>
       </div>
       <div className="PostActions">
