@@ -4,15 +4,13 @@ import AuthButton from "../components/LogoutButton";
 import { jwtDecode } from "jwt-decode";
 import PostRecord from "../components/PostRecord";
 
-interface SubPost {
+interface Post {
   id: number;
   title: string;
-}
-
-interface Post {
-  id: number
-  title: string
-  subPost: string
+  subposts?: {
+    id: number;
+    title: string;
+  }[];
 }
 
 interface IdField {
@@ -34,9 +32,16 @@ const Posts = () => {
   const [title, setTitle] = useState('');
 
   const fetchPosts = async () => {
-    const userId = getUserId();
-    const response = await axios.get(`http://localhost:5000/api/post/userposts/${userId}`);
-    setPosts(response.data);
+    try {
+      const userId = getUserId();
+      const response = await axios.get(`http://localhost:5000/api/post/userposts/${userId}`);
+      console.log('API response:', response.data);
+      setPosts(response.data);
+      console.log('Posts response:', posts);
+    } catch (error) {
+      console.error('Fetch error:', error);
+      setPosts([]);
+    }
   }
 
   useEffect(() => {
@@ -86,7 +91,7 @@ const Posts = () => {
             id={post.id}
             updPost={updPost}
             delPost={delPost}
-            subPost={post.subPost}
+            subPosts={post.subposts}
           />
         ))}
     </div>
