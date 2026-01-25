@@ -4,15 +4,13 @@ import AuthButton from "../components/LogoutButton";
 import { jwtDecode } from "jwt-decode";
 import PostRecord from "../components/PostRecord";
 
-interface SubPost {
+interface Post {
   id: number;
   title: string;
-}
-
-interface Post {
-  id: number
-  title: string
-  subPost: SubPost[]
+  subposts?: {
+    id: number;
+    title: string;
+  }[];
 }
 
 interface IdField {
@@ -39,7 +37,7 @@ const Posts = () => {
       const response = await axios.get(`http://localhost:5000/api/post/userposts/${userId}`);
       console.log('API response:', response.data);
       setPosts(response.data);
-      posts.map(sp => sp.subPost) // Закончил здесь
+      console.log('Posts response:', posts);
     } catch (error) {
       console.error('Fetch error:', error);
       setPosts([]);
@@ -93,7 +91,7 @@ const Posts = () => {
             id={post.id}
             updPost={updPost}
             delPost={delPost}
-            subPost={post.subPost}
+            subPosts={post.subposts}
           />
         ))}
     </div>
