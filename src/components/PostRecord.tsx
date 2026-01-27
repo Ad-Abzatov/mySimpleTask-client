@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import KebabMenu, { MenuItem } from "./KebabMenu";
 
 interface PostRecordProps {
   id: number;
@@ -25,6 +26,11 @@ const handleDel = () => {
   delPost(id);
 };
 
+const menuItems: MenuItem[] = [
+  {label: 'Изменить', onClick: () => updPost(id, title)},
+  {label: 'Удалить', onClick: () => delPost(id)}
+];
+
   return (
     <div className="PostCard">
       <div className="PostContent">
@@ -39,8 +45,9 @@ const handleDel = () => {
         </div>
       </div>
       <div className="PostActions">
-        <button className="PostButton PostButtonEdit" onClick={handleUpd}>Изменить</button>
-        <button className="PostButton PostButtonDel" onClick={handleDel}>Удалить</button>
+        <KebabMenu items={menuItems} />
+        {/* <button className="PostButton PostButtonEdit" onClick={handleUpd}>Изменить</button>
+        <button className="PostButton PostButtonDel" onClick={handleDel}>Удалить</button> */}
         <button onClick={toggleSubtasks}>{showSubtasks ? 'Скрыть' : 'Показать'}</button>
       </div>
     </div>
