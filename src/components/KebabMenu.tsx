@@ -35,7 +35,7 @@ const KebabMenu: FC<KebabMenuProps> = ({items}) => {
           <span></span><span></span><span></span>
       </button>
       {isOpen && (
-        <div className="menu=dropdown">
+        <div className="menu-dropdown">
           {items.map((item, index) => (
             <button
               key={index}

@@ -45,10 +45,10 @@ const menuItems: MenuItem[] = [
         </div>
       </div>
       <div className="PostActions">
+        <button onClick={toggleSubtasks}>{showSubtasks ? 'Скрыть' : 'Показать'}</button>
         <KebabMenu items={menuItems} />
         {/* <button className="PostButton PostButtonEdit" onClick={handleUpd}>Изменить</button>
         <button className="PostButton PostButtonDel" onClick={handleDel}>Удалить</button> */}
-        <button onClick={toggleSubtasks}>{showSubtasks ? 'Скрыть' : 'Показать'}</button>
       </div>
     </div>
   )
