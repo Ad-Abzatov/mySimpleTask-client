@@ -106,3 +106,67 @@ button[type=submit] {
 .PostButtonDel:hover {
   background-color: firebrick;
 }
+
+.kebab-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.kebab-button {
+  background: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.kebab-button:hover {
+  background: #f0f0f0;
+}
+
+.kebab-button span {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #666;
+  margin: 1px;
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 160px;
+  z-index: 1000;
+  animation: slideDown 0.2s ease-out;
+}
+
+.menu-item {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.menu-item:hover {
+  background: #f8f9fa;
+}
+
+@keyframes slideDown {
+  from {opacity: 0; transform: translateY(-8px);}
+  to {opacity: 1; transform: translateY(0);}
+}
