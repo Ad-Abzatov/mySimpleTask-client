@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import AuthButton from "../components/LogoutButton";
 import { jwtDecode } from "jwt-decode";
 import PostRecord from "../components/PostRecord";
+import Logo from "../components/Logo";
 
 interface Post {
   id: number;
@@ -72,7 +73,10 @@ const Posts = () => {
 
   return (
     <div className='Posts'>
-      <AuthButton />
+      <header>
+        <AuthButton />
+        <Logo />
+      </header>
       <form onSubmit={addPost}>
         <div className="AddTask">
           <input

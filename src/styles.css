@@ -170,3 +170,12 @@ button[type=submit] {
   from {opacity: 0; transform: translateY(-8px);}
   to {opacity: 1; transform: translateY(0);}
 }
+
+header {
+  justify-content: space-between;
+}
+
+/* .LogoutButton {
+  display: flex;
+  justify-content: flex-end;
+} */
