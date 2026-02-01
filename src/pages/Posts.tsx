@@ -73,10 +73,10 @@ const Posts = () => {
 
   return (
     <div className='Posts'>
-      <header>
-        <AuthButton />
+      <div className="Header">
         <Logo />
-      </header>
+        <AuthButton />
+      </div>
       <form onSubmit={addPost}>
         <div className="AddTask">
           <input

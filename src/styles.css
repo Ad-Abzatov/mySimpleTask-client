@@ -171,8 +171,9 @@ button[type=submit] {
   to {opacity: 1; transform: translateY(0);}
 }
 
-header {
+.Header {
   justify-content: space-between;
+  display: flex;
 }
 
 /* .LogoutButton {
