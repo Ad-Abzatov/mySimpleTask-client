@@ -8,7 +8,7 @@ import Logo from "../components/Logo";
 interface Post {
   id: number;
   title: string;
-  subposts?: {
+  subPosts?: {
     id: number;
     title: string;
   }[];
@@ -95,7 +95,7 @@ const Posts = () => {
             id={post.id}
             updPost={updPost}
             delPost={delPost}
-            subPosts={post.subposts}
+            subPosts={post.subPosts}
           />
         ))}
     </div>
