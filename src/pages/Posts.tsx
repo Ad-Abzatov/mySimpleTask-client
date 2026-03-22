@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import AuthButton from "../components/LogoutButton";
 import { jwtDecode } from "jwt-decode";
 import PostRecord from "../components/PostRecord";
@@ -49,7 +49,7 @@ const Posts = () => {
     fetchPosts();
   }, []);
 
-  const addPost = async (e: any) => {
+  const addPost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const authorId = getUserId();
     const newPost = {title, authorId};
