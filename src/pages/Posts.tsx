@@ -89,6 +89,7 @@ const Posts = () => {
         </div>
       </form>
         <h1>Список задач</h1>
+        <div className="MainBoard">
         {posts.map((post) => (
           <PostRecord
             title={post.title}
@@ -98,6 +99,8 @@ const Posts = () => {
             subPosts={post.subPosts}
           />
         ))}
+        <div>Задача</div>
+        </div>
     </div>
   )
 }
