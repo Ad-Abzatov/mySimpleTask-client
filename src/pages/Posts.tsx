@@ -1,13 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import AuthButton from "../components/LogoutButton";
 import { jwtDecode } from "jwt-decode";
 import PostRecord from "../components/PostRecord";
+import Logo from "../components/Logo";
 
 interface Post {
   id: number;
   title: string;
-  subposts?: {
+  subPosts?: {
     id: number;
     title: string;
   }[];
@@ -48,7 +49,7 @@ const Posts = () => {
     fetchPosts();
   }, []);
 
-  const addPost = async (e: any) => {
+  const addPost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const authorId = getUserId();
     const newPost = {title, authorId};
@@ -72,7 +73,10 @@ const Posts = () => {
 
   return (
     <div className='Posts'>
-      <AuthButton />
+      <div className="Header">
+        <Logo />
+        <AuthButton />
+      </div>
       <form onSubmit={addPost}>
         <div className="AddTask">
           <input
@@ -85,15 +89,18 @@ const Posts = () => {
         </div>
       </form>
         <h1>Список задач</h1>
+        <div className="MainBoard">
         {posts.map((post) => (
           <PostRecord
             title={post.title}
             id={post.id}
             updPost={updPost}
             delPost={delPost}
-            subPosts={post.subposts}
+            subPosts={post.subPosts}
           />
         ))}
+        <div>Задача</div>
+        </div>
     </div>
   )
 }
