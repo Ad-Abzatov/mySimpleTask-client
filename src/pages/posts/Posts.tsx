@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import AuthButton from "../components/LogoutButton";
+import AuthButton from "../../components/LogoutButton";
 import { jwtDecode } from "jwt-decode";
-import PostRecord from "../components/PostRecord";
-import Logo from "../components/Logo";
+import PostRecord from "../../components/PostRecord";
+import Logo from "../../components/Logo";
 
 interface Post {
   id: number;
@@ -89,7 +89,7 @@ const Posts = () => {
         </div>
       </form>
         <h1>Список задач</h1>
-        <div className="MainBoard">
+        {/* <div className="MainBoard"> */}
         {posts.map((post) => (
           <PostRecord
             title={post.title}
@@ -99,8 +99,8 @@ const Posts = () => {
             subPosts={post.subPosts}
           />
         ))}
-        <div>Задача</div>
-        </div>
+        {/* <div>Задача</div>
+        </div> */}
     </div>
   )
 }

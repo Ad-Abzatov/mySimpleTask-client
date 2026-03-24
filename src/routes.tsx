@@ -1,5 +1,5 @@
-import Auth from "./pages/Auth";
-import Posts from "./pages/Posts";
+import Auth from "./pages/auth/Auth";
+import Posts from "./pages/posts/Posts";
 import { HOME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "./utils/consts";
 
 export const routes = [
