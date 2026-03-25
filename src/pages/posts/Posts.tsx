@@ -2,8 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import AuthButton from "../../components/LogoutButton";
 import { jwtDecode } from "jwt-decode";
-import PostRecord from "../../components/PostRecord";
+import PostRecord from "../../components/postRecord/PostRecord";
 import Logo from "../../components/Logo";
+import "./Posts.css"
 
 interface Post {
   id: number;
