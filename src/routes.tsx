@@ -1,4 +1,5 @@
-import Auth from "./pages/auth/Auth";
+import Auth from "./pages/personal/Auth";
+import Registration from "./pages/personal/Registration";
 import Posts from "./pages/posts/Posts";
 import { HOME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "./utils/consts";
 
@@ -9,7 +10,7 @@ export const routes = [
   },
   {
     path: REGISTRATION_ROUTE,
-    Component: Auth,
+    Component: Registration,
   },
   {
     path: HOME_ROUTE,

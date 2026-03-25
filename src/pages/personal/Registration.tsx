@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { LOGIN_ROUTE } from "../utils/consts";
+import { LOGIN_ROUTE } from "../../utils/consts";
 import { useState } from "react";
 import axios from "axios";
 

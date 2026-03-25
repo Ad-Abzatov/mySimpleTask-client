@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import { HOME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
 import Posts from "../pages/posts/Posts";
-import Auth from "../pages/auth/Auth";
-import Registration from "../pages/registration";
+import Auth from "../pages/personal/Auth";
+import Registration from "../pages/personal/Registration";
 
 const AppRouter = () => {
   return (
