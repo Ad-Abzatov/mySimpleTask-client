@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { HOME_ROUTE, REGISTRATION_ROUTE } from "../../utils/consts"
 import React, { useState } from "react";
 import axios from "axios";
+import "./Personal.css";
 
 const Auth = () => {
   const navigate = useNavigate();
