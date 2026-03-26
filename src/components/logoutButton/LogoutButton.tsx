@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { LOGIN_ROUTE } from "../utils/consts";
+import { LOGIN_ROUTE } from "../../utils/consts";
 import { jwtDecode } from "jwt-decode";
+import "./LogoutButton.css"
 
 interface LoginField {
   login: string

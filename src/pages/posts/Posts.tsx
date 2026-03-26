@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import AuthButton from "../../components/LogoutButton";
+import AuthButton from "../../components/logoutButton/LogoutButton";
 import { jwtDecode } from "jwt-decode";
 import PostRecord from "../../components/postRecord/PostRecord";
 import Logo from "../../components/Logo";

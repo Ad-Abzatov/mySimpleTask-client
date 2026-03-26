@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import KebabMenu, { MenuItem } from "../KebabMenu";
+import KebabMenu, { MenuItem } from "../kebabMenu/KebabMenu";
 import "./PostRecord.css"
 
 interface PostRecordProps {
