@@ -1,4 +1,5 @@
 import { FC, useEffect, useRef, useState } from "react";
+import "./KebabMenu.css"
 
 export interface MenuItem {
   label: string;

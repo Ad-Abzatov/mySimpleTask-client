@@ -1,0 +1,15 @@
+.LogoutButton {
+  float: right;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+}
+
+.ButtonOut {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 25px;
+  border-radius: 50px;
+  margin: 0 15px 15px 0;
+  color: #444;
+}
