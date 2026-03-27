@@ -2,3 +2,7 @@
   justify-content: space-between;
   display: flex;
 }
+
+.Posts h1 {
+  color: aliceblue;
+}
