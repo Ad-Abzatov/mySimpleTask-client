@@ -1,8 +1,10 @@
 body {
-  background-color: antiquewhite;
+  /* background-color: antiquewhite;  */
   display: flex;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(135deg, #889aeebb 0%, #3e3b41 50%, #62f17aa4 100%);
+  background-attachment: fixed;
 }
 
 button[type=submit] {
