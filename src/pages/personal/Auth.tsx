@@ -31,7 +31,7 @@ const Auth = () => {
   return (
     <div className='Login'>
       <div>
-        <h4 className="headLabel">Войти</h4>
+        <h4 className="headLabel">Вход</h4>
       </div>
       <form onSubmit={handleSubmit}>
         <div>
