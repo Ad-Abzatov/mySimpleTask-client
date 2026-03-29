@@ -6,3 +6,7 @@
 .Posts h1 {
   color: aliceblue;
 }
+
+.ItemBoard {
+  border: 1px solid;
+}
