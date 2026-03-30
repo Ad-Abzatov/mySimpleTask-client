@@ -7,13 +7,23 @@ interface PostRecordProps {
   title: string;
   updPost: (id: number, title: string) => Promise<void>;
   delPost: (id: number) => Promise<void>;
+  isSelected?: boolean;
+  onSelect?: () => void;
   subPosts?: {
     id: number;
     title: string;
   }[];
 }
 
-const PostRecord: FC<PostRecordProps> = ({title, id, updPost, delPost, subPosts}) => {
+const PostRecord: FC<PostRecordProps> = ({
+  title,
+  id,
+  updPost,
+  delPost,
+  subPosts,
+  isSelected = false,
+  onSelect,
+}) => {
   const [showSubtasks, setShowSubtasks] = useState(false);
 
   const toggleSubtasks = () => {
@@ -33,7 +43,7 @@ const menuItems: MenuItem[] = [
 ];
 
   return (
-    <div className="PostCard">
+    <div className="PostCard" onClick={onSelect}>
       <div className="PostContent">
         {title}
         <div>
