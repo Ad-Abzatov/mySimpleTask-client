@@ -32,6 +32,7 @@ const getUserId = () => {
 const Posts = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [title, setTitle] = useState('');
+  const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
 
   const fetchPosts = async () => {
     try {
@@ -49,6 +50,8 @@ const Posts = () => {
   useEffect(() => {
     fetchPosts();
   }, []);
+
+   const selectedPost = posts.find(post => post.id === selectedPostId) || null;
 
   const addPost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -99,10 +102,15 @@ const Posts = () => {
             updPost={updPost}
             delPost={delPost}
             subPosts={post.subPosts}
+            isSelected={post.id === selectedPostId}
+            onSelect={() => setSelectedPostId(post.id)}
           />
         ))}
         </ul>
-        <div className="ItemBoard">Задача</div>
+        <div className="ItemBoard">
+          Задача <br/>
+          {selectedPost ? selectedPost.title : null}
+        </div>
         </div>
     </div>
   )
