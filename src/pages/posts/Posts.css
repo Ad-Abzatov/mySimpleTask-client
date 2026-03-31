@@ -10,3 +10,7 @@
 .ItemBoard {
   border: 1px solid;
 }
+
+.MainBoard li {
+  list-style: none;
+}
