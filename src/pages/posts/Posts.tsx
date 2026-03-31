@@ -95,18 +95,20 @@ const Posts = () => {
         <h1>Список задач</h1>
         <div className="MainBoard">
           <ul>
-        {posts.map((post) => (
-          <PostRecord
-            title={post.title}
-            id={post.id}
-            updPost={updPost}
-            delPost={delPost}
-            subPosts={post.subPosts}
-            isSelected={post.id === selectedPostId}
-            onSelect={() => setSelectedPostId(post.id)}
-          />
-        ))}
-        </ul>
+            {posts.map((post) => (
+              <li>
+                <PostRecord
+                  title={post.title}
+                  id={post.id}
+                  updPost={updPost}
+                  delPost={delPost}
+                  subPosts={post.subPosts}
+                  isSelected={post.id === selectedPostId}
+                  onSelect={() => setSelectedPostId(post.id)}
+                />
+              </li>
+            ))}
+          </ul>
         <div className="ItemBoard">
           Задача <br/>
           {selectedPost ? selectedPost.title : null}

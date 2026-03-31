@@ -33,14 +33,14 @@ const PostRecord: FC<PostRecordProps> = ({
   const handleUpd = () => {
     updPost(id, title);
   };
-const handleDel = () => {
-  delPost(id);
-};
+  const handleDel = () => {
+    delPost(id);
+  };
 
-const menuItems: MenuItem[] = [
-  {label: 'Изменить', onClick: () => updPost(id, title)},
-  {label: 'Удалить', onClick: () => delPost(id)}
-];
+  const menuItems: MenuItem[] = [
+    {label: 'Изменить', onClick: () => updPost(id, title)},
+    {label: 'Удалить', onClick: () => delPost(id)}
+  ];
 
   return (
     <div className="PostCard" onClick={onSelect}>
