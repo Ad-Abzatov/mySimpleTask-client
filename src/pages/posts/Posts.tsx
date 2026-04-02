@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode";
 import PostRecord from "../../components/postRecord/PostRecord";
 import Logo from "../../components/Logo";
 import "./Posts.css"
+import PostItem from "../../components/postItem/PostItem";
 
 interface Post {
   id: number;
@@ -51,7 +52,7 @@ const Posts = () => {
     fetchPosts();
   }, []);
 
-   const selectedPost = posts.find(post => post.id === selectedPostId) || null;
+  const selectedPost = posts.find(post => post.id === selectedPostId) || null;
 
   const addPost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -76,7 +77,7 @@ const Posts = () => {
   }
 
   return (
-    <div className='Posts'>
+    <div className="Posts">
       <div className="Header">
         <Logo />
         <AuthButton />
@@ -92,8 +93,9 @@ const Posts = () => {
           <button type="submit">Добавить задачу</button>
         </div>
       </form>
-        <h1>Список задач</h1>
-        <div className="MainBoard">
+      <div className="MainBoard">
+        {/* <h1>Список задач</h1> */}
+        <div className="ListBoard">
           <ul>
             {posts.map((post) => (
               <li>
@@ -109,11 +111,12 @@ const Posts = () => {
               </li>
             ))}
           </ul>
+        </div>
         <div className="ItemBoard">
           Задача <br/>
-          {selectedPost ? selectedPost.title : null}
+          {selectedPost ? <PostItem title={selectedPost.title} subPosts={selectedPost.subPosts} /> : null}
         </div>
-        </div>
+      </div>
     </div>
   )
 }
