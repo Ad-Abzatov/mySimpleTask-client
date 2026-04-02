@@ -3,6 +3,10 @@
   display: flex;
 }
 
+.MainBoard {
+  display: flex;
+}
+
 .Posts h1 {
   color: aliceblue;
 }
@@ -11,6 +15,10 @@
   border: 1px solid;
 }
 
-.MainBoard li {
+.ListBoard {
+  border: 1px solid;
+}
+
+.ListBoard li {
   list-style: none;
 }

@@ -20,7 +20,6 @@ const PostRecord: FC<PostRecordProps> = ({
   id,
   updPost,
   delPost,
-  subPosts,
   isSelected = false,
   onSelect,
 }) => {
@@ -46,17 +45,17 @@ const PostRecord: FC<PostRecordProps> = ({
     <div className="PostCard" onClick={onSelect}>
       <div className="PostContent">
         {title}
-        <div>
+        {/* <div>
           {
             showSubtasks && subPosts && subPosts?.length > 0 &&
               subPosts.map(subPost =>
             <div key={subPost.id}>{subPost.title}</div>
               )
           }
-        </div>
+        </div> */}
       </div>
       <div className="PostActions">
-        <button onClick={toggleSubtasks}>{showSubtasks ? 'Скрыть' : 'Показать'}</button>
+        {/* <button onClick={toggleSubtasks}>{showSubtasks ? 'Скрыть' : 'Показать'}</button> */}
         <KebabMenu items={menuItems} />
         {/* <button className="PostButton PostButtonEdit" onClick={handleUpd}>Изменить</button>
         <button className="PostButton PostButtonDel" onClick={handleDel}>Удалить</button> */}
