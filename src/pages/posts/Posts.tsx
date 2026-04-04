@@ -76,6 +76,14 @@ const Posts = () => {
     }
   }
 
+  const addSubPost = async (postId: number, data: string) => {
+    const newData = window.prompt(data, data);
+    if (newData !== null) {
+      await axios.post(`http://localhost:5000/api/post/subposts${postId}`, {title: newData});
+      fetchPosts();
+    }
+  }
+
   return (
     <div className="Posts">
       <div className="Header">
@@ -114,7 +122,7 @@ const Posts = () => {
         </div>
         <div className="ItemBoard">
           Задача <br/>
-          {selectedPost ? <PostItem title={selectedPost.title} subPosts={selectedPost.subPosts} /> : null}
+          {selectedPost ? <PostItem title={selectedPost.title} subPosts={selectedPost.subPosts} addSub={addSubPost} id={selectedPostId} /> : null}
         </div>
       </div>
     </div>
