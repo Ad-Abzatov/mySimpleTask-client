@@ -1,9 +1,9 @@
 import { FC, useState } from "react";
 
 interface PostItemProps {
-  id: number;
+  id: number | null;
   title: string;
-  addSub: (postId: number, title: string) => Promise<void>;
+  addSub: (postId: number | null, title: string) => Promise<void>;
   subPosts?: {
     id: number;
     title: string;
@@ -16,7 +16,7 @@ const PostItem: FC<PostItemProps> = ({id, title, subPosts, addSub}) => {
 
   const handleAddSub = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!subTitle.trim()) return;
+    // if (!subTitle.trim()) return;
 
     await addSub(id, title);
     setSubTitle('');
