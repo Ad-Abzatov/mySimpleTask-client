@@ -76,10 +76,11 @@ const Posts = () => {
     }
   }
 
-  const addSubPost = async (postId: number, data: string) => {
+  const addSubPost = async (postId: number | null, data: string) => {
     const newData = window.prompt(data, data);
+    console.log(newData);
     if (newData !== null) {
-      await axios.post(`http://localhost:5000/api/post/subposts${postId}`, {title: newData});
+      await axios.post(`http://localhost:5000/api/post/subposts`, {title: newData});
       fetchPosts();
     }
   }
