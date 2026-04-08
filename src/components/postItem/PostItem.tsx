@@ -1,9 +1,9 @@
 import { FC, useState } from "react";
 
 interface PostItemProps {
-  id: number | null;
+  id: number;
   title: string;
-  addSub: (postId: number | null, title: string) => Promise<void>;
+  addSub: (postId: number, subTitle: string) => Promise<void>;
   subPosts?: {
     id: number;
     title: string;
@@ -16,10 +16,19 @@ const PostItem: FC<PostItemProps> = ({id, title, subPosts, addSub}) => {
 
   const handleAddSub = async (e: React.FormEvent) => {
     e.preventDefault();
-    // if (!subTitle.trim()) return;
+    if (!subTitle.trim()) {
+      alert('Введите название подзадачи!');
+      return;
+    }
 
-    await addSub(id, title);
-    setSubTitle('');
+    try {
+      await addSub(id, title);
+      setSubTitle('');
+      console.log('Подзадача добавлена!');
+    } catch (error) {
+      console.error('Ошибка:', error);
+      alert('Ошибка добавления подзадачи');
+    }
   }
 
   return (
@@ -30,9 +39,10 @@ const PostItem: FC<PostItemProps> = ({id, title, subPosts, addSub}) => {
       <div>
         {subPosts?.map(subPost => <div key={subPost.id}>{subPost.title}</div>)}
       </div>
-      <div>
-        <button onClick={handleAddSub}>Новая подзадача</button>
-      </div>
+      <form onSubmit={handleAddSub}>
+        <input value={subTitle} onChange={(e) => setSubTitle(e.target.value)} required />
+        <button type="submit">Новая подзадача</button>
+      </form>
     </div>
   )
 }

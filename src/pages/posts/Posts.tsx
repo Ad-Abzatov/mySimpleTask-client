@@ -34,17 +34,20 @@ const Posts = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [title, setTitle] = useState('');
   const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const fetchPosts = async () => {
+    setLoading(true);
     try {
       const userId = getUserId();
       const response = await axios.get(`http://localhost:5000/api/post/userposts/${userId}`);
       console.log('API response:', response.data);
       setPosts(response.data);
-      console.log('Posts response:', posts);
     } catch (error) {
       console.error('Fetch error:', error);
       setPosts([]);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -52,10 +55,15 @@ const Posts = () => {
     fetchPosts();
   }, []);
 
+  // useEffect(() => {
+  //   if (getUserId()) fetchPosts();
+  // }, []);
+
   const selectedPost = posts.find(post => post.id === selectedPostId) || null;
 
   const addPost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // setLoading(true);
     const authorId = getUserId();
     const newPost = {title, authorId};
     await axios.post('http://localhost:5000/api/post/posts', newPost);
@@ -76,12 +84,13 @@ const Posts = () => {
     }
   }
 
-  const addSubPost = async (postId: number | null, data: string) => {
-    const newData = window.prompt(data, data);
-    console.log(newData);
-    if (newData !== null) {
-      await axios.post(`http://localhost:5000/api/post/subposts`, {title: newData});
-      fetchPosts();
+  const addSubPost = async (postId: number, subTitle: string) => {
+    try {
+      await axios.post(`http://localhost:5000/api/post/subposts`, {postId, title: subTitle.trim()});
+      await fetchPosts();
+    } catch (error) {
+      console.log('Add subpost error:', error);
+      throw error;
     }
   }
 
@@ -123,7 +132,7 @@ const Posts = () => {
         </div>
         <div className="ItemBoard">
           Задача <br/>
-          {selectedPost ? <PostItem title={selectedPost.title} subPosts={selectedPost.subPosts} addSub={addSubPost} id={selectedPostId} /> : null}
+          {selectedPost ? <PostItem title={selectedPost.title} subPosts={selectedPost.subPosts} addSub={addSubPost} id={selectedPost.id} /> : null}
         </div>
       </div>
     </div>
