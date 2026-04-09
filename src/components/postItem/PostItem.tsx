@@ -22,7 +22,7 @@ const PostItem: FC<PostItemProps> = ({id, title, subPosts, addSub}) => {
     }
 
     try {
-      await addSub(id, title);
+      await addSub(id, subTitle);
       setSubTitle('');
       console.log('Подзадача добавлена!');
     } catch (error) {
