@@ -6,6 +6,7 @@ import PostRecord from "../../components/postRecord/PostRecord";
 import Logo from "../../components/Logo";
 import "./Posts.css"
 import PostItem from "../../components/postItem/PostItem";
+import Modal from "../../components/modal/Modal";
 
 interface Post {
   id: number;
@@ -35,6 +36,15 @@ const Posts = () => {
   const [title, setTitle] = useState('');
   const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true)
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+  };
 
   const fetchPosts = async () => {
     setLoading(true);
@@ -133,8 +143,10 @@ const Posts = () => {
         <div className="ItemBoard">
           Задача <br/>
           {selectedPost ? <PostItem title={selectedPost.title} subPosts={selectedPost.subPosts} addSub={addSubPost} id={selectedPost.id} /> : null}
+          <button onClick={openModal}>Открыть форму</button>
         </div>
       </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   )
 }
