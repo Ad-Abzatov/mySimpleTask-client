@@ -110,20 +110,20 @@ const Posts = () => {
         <Logo />
         <AuthButton />
       </div>
-      <form onSubmit={addPost}>
-        <div className="AddTask">
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-          <button type="submit">Добавить задачу</button>
-        </div>
-      </form>
       <div className="MainBoard">
         {/* <h1>Список задач</h1> */}
         <div className="ListBoard">
+          <form onSubmit={addPost}>
+            <div className="AddTask">
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+              />
+              <button type="submit">Добавить задачу</button>
+            </div>
+          </form>
           <ul>
             {posts.map((post) => (
               <li>

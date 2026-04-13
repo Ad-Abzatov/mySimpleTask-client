@@ -3,8 +3,12 @@
   display: flex;
 }
 
-.MainBoard {
+/* .MainBoard {
   display: flex;
+} */
+
+.Posts {
+  margin-left: 20px;
 }
 
 .Posts h1 {
@@ -13,6 +17,7 @@
 
 .ItemBoard {
   border: 1px solid;
+  width: 300px;
 }
 
 .ListBoard {
@@ -21,4 +26,9 @@
 
 .ListBoard li {
   list-style: none;
+}
+
+.ListBoard ul {
+  padding-left: 10px;
+  padding-right: 10px;
 }
