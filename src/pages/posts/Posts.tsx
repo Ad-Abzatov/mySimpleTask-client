@@ -114,7 +114,7 @@ const Posts = () => {
         {/* <h1>Список задач</h1> */}
         <div className="ListBoard">
           <form onSubmit={addPost}>
-            <div className="AddTask">
+            {/* <div className="AddTask">
               <input
                 type="text"
                 value={title}
@@ -122,7 +122,7 @@ const Posts = () => {
                 required
               />
               <button type="submit">Добавить задачу</button>
-            </div>
+            </div> */}
           </form>
           <ul>
             {posts.map((post) => (

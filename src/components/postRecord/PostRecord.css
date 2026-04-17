@@ -1,14 +1,24 @@
 .PostCard {
-  border: 1px solid brown;
+  /* border: 1px solid brown; */
   padding: 6px;
   margin-bottom: 10px;
-  border-radius: 7px;
-  background-color: bisque;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* border-radius: 7px; */
+  background: #eee;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); */
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   cursor: pointer;
+  transition: 0.2s;
+  position: relative;
+}
+
+/* .PostCard:nth-child(odd) {
+  background: #f9f9f9;
+} */
+
+.PostCard:hover {
+  background: #ddd;
 }
 
 .PostContent {

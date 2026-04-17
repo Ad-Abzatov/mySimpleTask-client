@@ -1,5 +1,6 @@
 body {
-  display: flex;
+  box-sizing: border-box;
+  /* display: flex; */
   background: linear-gradient(135deg, #bdc1cfbb 0%, #c4d9ec 50%, #62f17aa4 100%);
   background-attachment: fixed;
   flex-direction: column;
