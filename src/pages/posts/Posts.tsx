@@ -113,8 +113,8 @@ const Posts = () => {
       <div className="MainBoard">
         {/* <h1>Список задач</h1> */}
         <div className="ListBoard">
-          <form onSubmit={addPost}>
-            {/* <div className="AddTask">
+          {/* <form onSubmit={addPost}>
+            <div className="AddTask">
               <input
                 type="text"
                 value={title}
@@ -122,9 +122,10 @@ const Posts = () => {
                 required
               />
               <button type="submit">Добавить задачу</button>
-            </div> */}
-          </form>
+            </div>
+          </form> */}
           <ul>
+            <button onClick={openModal} className="AddPost">Добавить задачу</button>
             {posts.map((post) => (
               <li>
                 <PostRecord
