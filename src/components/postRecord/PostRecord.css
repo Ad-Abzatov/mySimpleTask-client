@@ -1,9 +1,8 @@
 .PostCard {
   /* border: 1px solid brown; */
   padding: 6px;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   /* border-radius: 7px; */
-  background: #eee;
   /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); */
   display: flex;
   /* justify-content: space-between; */
@@ -11,6 +10,8 @@
   cursor: pointer;
   transition: 0.2s;
   position: relative;
+  font-size: 16px;
+  width: 300px;
 }
 
 /* .PostCard:nth-child(odd) {
@@ -18,7 +19,7 @@
 } */
 
 .PostCard:hover {
-  background: #ddd;
+  background: #95918C;
 }
 
 .PostContent {
