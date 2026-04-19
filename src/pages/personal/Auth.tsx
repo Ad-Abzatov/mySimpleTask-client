@@ -3,6 +3,7 @@ import { HOME_ROUTE, REGISTRATION_ROUTE } from "../../utils/consts"
 import React, { useState } from "react";
 import axios from "axios";
 import "./Personal.css";
+import toast from "react-hot-toast";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -24,7 +25,10 @@ const Auth = () => {
       }
     } catch (error) {
       console.log('Ошибка:', error);
-      throw error;
+      // alert(error);
+      setError('Неверный логин/пароль');
+      toast.error('Неверный логин/пароль');
+      // throw error;
     }
   }
 
