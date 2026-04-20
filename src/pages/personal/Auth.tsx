@@ -10,11 +10,13 @@ const Auth = () => {
 
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [authError, setAuthError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    setError('');
+    setAuthError('');
+    setLoading(true);
 
     try {
       const userData = {login, password};
@@ -22,13 +24,19 @@ const Auth = () => {
       if (response.data && response.data.token) {
         localStorage.setItem('Bearer', response.data.token);
         navigate(HOME_ROUTE);
+        return;
       }
-    } catch (error) {
-      console.log('Ошибка:', error);
-      // alert(error);
-      setError('Неверный логин/пароль');
-      toast.error('Неверный логин/пароль');
-      // throw error;
+
+      setAuthError('Ошибка авторизации');
+      toast.error(authError);
+
+    } catch (error: any) {
+      console.log('Ошибка:', error.response.data);
+      setAuthError(error.response.data.message);
+      alert(authError);
+      console.log(authError);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -46,7 +54,7 @@ const Auth = () => {
           <label htmlFor="password">Пароль</label>
           <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </div>
-        <button className="userFormButton">Войти</button>
+        <button className="userFormButton">{loading ? 'Вход...' : 'Войти'}</button>
         <Link to={REGISTRATION_ROUTE}>Регистрация</Link>
       </form>
     </div>
