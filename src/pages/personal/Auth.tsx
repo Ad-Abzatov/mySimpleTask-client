@@ -5,18 +5,26 @@ import axios from "axios";
 import "./Personal.css";
 import toast from "react-hot-toast";
 
+interface AxiosErrorResponse {
+  response?: {
+    status: number;
+    data?: { message: string };
+  };
+  message: string;
+}
+
 const Auth = () => {
   const navigate = useNavigate();
 
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
-  const [authError, setAuthError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [authError, setAuthError] = useState('');
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    setAuthError('');
     setLoading(true);
+    setAuthError('');
 
     try {
       const userData = {login, password};
@@ -27,14 +35,15 @@ const Auth = () => {
         return;
       }
 
-      setAuthError('Ошибка авторизации');
-      toast.error(authError);
+      alert('Ошибка авторизации');
 
-    } catch (error: any) {
-      console.log('Ошибка:', error.response.data);
-      setAuthError(error.response.data.message);
-      alert(authError);
-      console.log(authError);
+    } catch (error: unknown) {
+      const axiosError = error as AxiosErrorResponse;
+      const errorMsg = axiosError.response?.data?.message || 'Ошибка';
+      setAuthError(errorMsg);
+      console.log('Ошибка:', axiosError.response?.data);
+      alert(errorMsg);
+      console.log(errorMsg);
     } finally {
       setLoading(false);
     }
@@ -53,6 +62,7 @@ const Auth = () => {
         <div>
           <label htmlFor="password">Пароль</label>
           <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          {authError}
         </div>
         <button className="userFormButton">{loading ? 'Вход...' : 'Войти'}</button>
         <Link to={REGISTRATION_ROUTE}>Регистрация</Link>
