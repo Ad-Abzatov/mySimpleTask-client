@@ -17,14 +17,21 @@
   margin: 8vh auto;
 }
 
-input[type=text],
-input[type=password] {
+input {
   padding: 12px;
   margin-bottom: 20px;
   border: 1px solid #a67c00;
   border-radius: 10px;
   font-size: 16px;
   transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+  box-shadow: 0 2px 10px rgba(7, 100, 240, 0.8);
+}
+
+input.Error {
+  box-shadow: 0 2px 5px rgba(245, 4, 4, 0.8);
 }
 
 .headLabel {
