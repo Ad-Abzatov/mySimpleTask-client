@@ -20,6 +20,7 @@ const Auth = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [authError, setAuthError] = useState('');
+  const [inputError, setInputError] = useState('');
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -42,8 +43,9 @@ const Auth = () => {
       const errorMsg = axiosError.response?.data?.message || 'Ошибка';
       setAuthError(errorMsg);
       console.log('Ошибка:', axiosError.response?.data);
-      alert(errorMsg);
+      // alert(errorMsg);
       console.log(errorMsg);
+      setInputError('Error');
     } finally {
       setLoading(false);
     }
@@ -57,12 +59,12 @@ const Auth = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="login">Логин</label>
-          <input id="login" type="text"  value={login} onChange={(e) => setLogin(e.target.value)} required />
+          <input className={`${inputError}`} id="login" type="text"  value={login} onChange={(e) => setLogin(e.target.value)} required />
         </div>
         <div>
           <label htmlFor="password">Пароль</label>
-          <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-          {authError}
+          <input className={`${inputError}`} id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <span style={{color:'red'}}>{authError}</span>
         </div>
         <button className="userFormButton">{loading ? 'Вход...' : 'Войти'}</button>
         <Link to={REGISTRATION_ROUTE}>Регистрация</Link>
