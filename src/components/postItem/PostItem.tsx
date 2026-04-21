@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import "./PostItem.css"
 
 interface PostItemProps {
   id: number;
@@ -32,13 +33,13 @@ const PostItem: FC<PostItemProps> = ({id, title, subPosts, addSub}) => {
   }
 
   return (
-    <div>
-      <div>
+    <div className="PostItem">
+      <div className="Title">
         {title}
       </div>
-      <div>
-        {subPosts?.map(subPost => <div key={subPost.id}>{subPost.title}</div>)}
-      </div>
+      <ul>
+        {subPosts?.map(subPost => <li key={subPost.id}>{subPost.title}</li>)}
+      </ul>
       <form onSubmit={handleAddSub}>
         <input value={subTitle} onChange={(e) => setSubTitle(e.target.value)} required />
         <button type="submit">Новая подзадача</button>
