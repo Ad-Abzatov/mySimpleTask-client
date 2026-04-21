@@ -1,0 +1,11 @@
+.Title {
+  padding: 6px;
+  font-size: 24px;
+  border: 1px solid brown;
+}
+
+.PostItem li {
+  list-style: none;
+  padding: 3px;
+  font-size: 18px;
+}
