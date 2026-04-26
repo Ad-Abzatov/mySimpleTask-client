@@ -1,13 +1,28 @@
-import { FC, useEffect, useRef } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import "./Modal.css"
 
-interface ModalProps {
+interface FormField {
+  name: string;
+  type: 'text' | 'number';
+}
+
+interface FormData {
+  [key: string]: string;
+}
+interface ModalProps<T extends FormData = FormData> {
   isOpen: boolean;
+  fields: FormField[];
+  title?: string;
+  onSubmit: (data: T) => Promise<void>;
   onClose: () => void;
 }
 
-const Modal: FC<ModalProps> = ({isOpen, onClose}) => {
+const Modal: FC<ModalProps> = ({isOpen, onClose, onSubmit, fields, title}) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const [formData, setFormData] = useState<FormData>({});
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -30,6 +45,7 @@ const Modal: FC<ModalProps> = ({isOpen, onClose}) => {
       <div ref={modalRef} className="modal">
         <h2>Форма</h2>
         <form>
+          <button type="submit">Добавить задачу</button><br />
           <button type="button" onClick={onClose}>Закрыть</button>
         </form>
       </div>
