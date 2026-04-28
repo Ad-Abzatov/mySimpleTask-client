@@ -15,13 +15,21 @@ interface ModalProps<T extends FormData = FormData> {
   title?: string;
   onSubmit: (data: T) => Promise<void>;
   onClose: () => void;
+  initialData?: Partial<T>;
 }
 
-const Modal: FC<ModalProps> = ({isOpen, onClose, onSubmit, fields, title}) => {
+const Modal: FC<ModalProps> = ({isOpen, onClose, onSubmit, fields, title, initialData = {} as any}) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState<FormData>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (isOpen) {
+      setFormData(initialData as Record<string, string>);
+      setError('');
+    }
+  }, [isOpen, initialData]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
