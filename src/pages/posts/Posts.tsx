@@ -147,7 +147,7 @@ const Posts = () => {
           <button onClick={openModal}>Открыть форму</button>
         </div>
       </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal} />
+      <Modal isOpen={isModalOpen} onClose={closeModal} onSubmit={addPost} />
     </div>
   )
 }
