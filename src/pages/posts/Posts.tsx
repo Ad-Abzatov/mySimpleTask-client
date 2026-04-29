@@ -71,11 +71,10 @@ const Posts = () => {
 
   const selectedPost = posts.find(post => post.id === selectedPostId) || null;
 
-  const addPost = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const addPost = async (data: {title: string}) => {
     // setLoading(true);
     const authorId = getUserId();
-    const newPost = {title, authorId};
+    const newPost = {title: data.title, authorId};
     await axios.post('http://localhost:5000/api/post/posts', newPost);
     setTitle('');
     fetchPosts();
