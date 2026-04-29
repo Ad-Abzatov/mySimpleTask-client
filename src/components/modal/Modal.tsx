@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import "./Modal.css"
 
 interface FormField {
@@ -18,7 +18,14 @@ interface ModalProps<T extends FormData = FormData> {
   initialData?: Partial<T>;
 }
 
-const Modal: FC<ModalProps> = ({isOpen, onClose, onSubmit, fields, title, initialData = {} as any}) => {
+const Modal: FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  onSubmit,
+  fields,
+  title,
+  initialData = {} as any
+}) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState<FormData>({});
   const [loading, setLoading] = useState(false);
@@ -46,13 +53,38 @@ const Modal: FC<ModalProps> = ({isOpen, onClose, onSubmit, fields, title, initia
     };
   }, [onClose]);
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    setError('');
+    setLoading(true);
+
+    try {
+      const submitData = formData as any;
+      await onSubmit(submitData);
+      onClose();
+    } catch (err: any) {
+      setError(err.message || 'Ошибка сохранения');
+    } finally {
+      setLoading(false);
+    }
+  }
+
   if (!isOpen) return null;
 
   return (
-    <div className="overlay">
-      <div ref={modalRef} className="modal">
-        <h2>Форма</h2>
-        <form>
+    <div className="overlay" onClick={onClose}>
+      <div ref={modalRef} className="modal" onClick={(e) => e.stopPropagation()}>
+        <h2>{title}</h2>
+        <form onSubmit={handleSubmit}>
           <button type="submit">Добавить задачу</button><br />
           <button type="button" onClick={onClose}>Закрыть</button>
         </form>
