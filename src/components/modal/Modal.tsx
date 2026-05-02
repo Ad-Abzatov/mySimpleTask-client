@@ -4,12 +4,13 @@ import "./Modal.css"
 interface FormField {
   name: string;
   type: 'text' | 'number';
+  label?: string;
 }
 
 interface FormData {
   [key: string]: string;
 }
-interface ModalProps<T extends FormData = FormData> {
+interface ModalProps<T = Record<string, string>> {
   isOpen: boolean;
   fields: FormField[];
   title?: string;
@@ -23,7 +24,7 @@ const Modal: FC<ModalProps> = ({
   onClose,
   onSubmit,
   fields,
-  title,
+  title = 'Форма',
   initialData = {} as any
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
