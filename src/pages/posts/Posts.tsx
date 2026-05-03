@@ -146,7 +146,7 @@ const Posts = () => {
           <button onClick={openModal}>Открыть форму</button>
         </div>
       </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal} onSubmit={addPost} fields={[name: 'title', type: 'text']} />
+      <Modal<{ title: string }> isOpen={isModalOpen} onClose={closeModal} onSubmit={addPost} fields={[{name: 'title', type: 'text'}]} title="Новая запись" />
     </div>
   )
 }

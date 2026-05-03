@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, lazy, useEffect, useRef, useState } from "react";
 import "./Modal.css"
 
 interface FormField {
@@ -10,7 +10,7 @@ interface FormField {
 interface FormData {
   [key: string]: string;
 }
-interface ModalProps<T = Record<string, string>> {
+interface ModalProps<T = {[key: string]: string | number}> {
   isOpen: boolean;
   fields: FormField[];
   title?: string;
@@ -86,6 +86,14 @@ const Modal: FC<ModalProps> = ({
       <div ref={modalRef} className="modal" onClick={(e) => e.stopPropagation()}>
         <h2>{title}</h2>
         <form onSubmit={handleSubmit}>
+          {fields.map((field) => (
+            <div key={field.name}>
+              {field.label && (
+                <label htmlFor={field.name}>{field.label}</label>
+              )}
+              <input type={field.type} name={field.name} onChange={handleChange} value={formData[field.name]} />
+            </div>
+          ))}
           <button type="submit">Добавить задачу</button><br />
           <button type="button" onClick={onClose}>Закрыть</button>
         </form>
