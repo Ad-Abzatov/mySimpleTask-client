@@ -71,7 +71,7 @@ const Posts = () => {
 
   const selectedPost = posts.find(post => post.id === selectedPostId) || null;
 
-  const addPost = async (data: {title: string}) => {
+  const addPost = async (data: {title: string | number}) => {
     // setLoading(true);
     const authorId = getUserId();
     const newPost = {title: data.title, authorId};
@@ -146,7 +146,7 @@ const Posts = () => {
           <button onClick={openModal}>Открыть форму</button>
         </div>
       </div>
-      <Modal<{ title: string }> isOpen={isModalOpen} onClose={closeModal} onSubmit={addPost} fields={[{name: 'title', type: 'text'}]} title="Новая запись" />
+      <Modal isOpen={isModalOpen} onClose={closeModal} onSubmit={addPost} fields={[{name: 'title', type: 'text'}]} title="Новая запись" />
     </div>
   )
 }

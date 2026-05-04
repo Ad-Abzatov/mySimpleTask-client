@@ -10,7 +10,7 @@ interface FormField {
 interface FormData {
   [key: string]: string;
 }
-interface ModalProps<T = {[key: string]: string | number}> {
+interface ModalProps<T = {title: string | number}> {
   isOpen: boolean;
   fields: FormField[];
   title?: string;
