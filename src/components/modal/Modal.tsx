@@ -16,7 +16,6 @@ interface ModalProps<T = {title: string | number}> {
   title?: string;
   onSubmit: (data: T) => Promise<void>;
   onClose: () => void;
-  initialData?: Partial<T>;
 }
 
 const Modal: FC<ModalProps> = ({
@@ -25,7 +24,6 @@ const Modal: FC<ModalProps> = ({
   onSubmit,
   fields,
   title = 'Форма',
-  initialData = {} as any
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState<FormData>({});
@@ -34,10 +32,10 @@ const Modal: FC<ModalProps> = ({
 
   useEffect(() => {
     if (isOpen) {
-      setFormData(initialData as Record<string, string>);
+      setFormData({} as FormData);
       setError('');
     }
-  }, [isOpen, initialData]);
+  }, [isOpen]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -91,7 +89,7 @@ const Modal: FC<ModalProps> = ({
               {field.label && (
                 <label htmlFor={field.name}>{field.label}</label>
               )}
-              <input type={field.type} name={field.name} onChange={handleChange} value={formData[field.name]} />
+              <input type={field.type} name={field.name} onChange={handleChange} value={formData[field.name] || ''} />
             </div>
           ))}
           <button type="submit">Добавить задачу</button><br />
