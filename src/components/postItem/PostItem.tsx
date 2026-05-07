@@ -4,6 +4,7 @@ import "./PostItem.css"
 interface PostItemProps {
   id: number;
   title: string;
+  createDate: string;
   addSub: (postId: number, subTitle: string) => Promise<void>;
   subPosts?: {
     id: number;
@@ -11,7 +12,7 @@ interface PostItemProps {
   }[];
 }
 
-const PostItem: FC<PostItemProps> = ({id, title, subPosts, addSub}) => {
+const PostItem: FC<PostItemProps> = ({id, title, subPosts, createDate, addSub}) => {
 
   const [subTitle, setSubTitle] = useState('');
 
@@ -35,7 +36,7 @@ const PostItem: FC<PostItemProps> = ({id, title, subPosts, addSub}) => {
   return (
     <div className="PostItem">
       <div className="Title">
-        {title}
+        {title} {createDate}
       </div>
       <ul>
         {subPosts?.map(subPost => <li key={subPost.id}>{subPost.title}</li>)}

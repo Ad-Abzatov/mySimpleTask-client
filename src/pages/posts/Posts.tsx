@@ -11,6 +11,7 @@ import Modal from "../../components/modal/Modal";
 interface Post {
   id: number;
   title: string;
+  createDate: string;
   subPosts?: {
     id: number;
     title: string;
@@ -142,7 +143,14 @@ const Posts = () => {
         </div>
         <div className="ItemBoard">
           Задача <br/>
-          {selectedPost ? <PostItem title={selectedPost.title} subPosts={selectedPost.subPosts} addSub={addSubPost} id={selectedPost.id} /> : null}
+          {selectedPost ?
+          <PostItem
+            title={selectedPost.title}
+            subPosts={selectedPost.subPosts}
+            addSub={addSubPost}
+            id={selectedPost.id}
+            createDate={selectedPost.createDate}
+          /> : null}
           <button onClick={openModal}>Открыть форму</button>
         </div>
       </div>
