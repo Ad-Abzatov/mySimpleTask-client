@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import "./PostItem.css"
+import { isoToRuDate } from "../../utils/date";
 
 interface PostItemProps {
   id: number;
@@ -36,7 +37,7 @@ const PostItem: FC<PostItemProps> = ({id, title, subPosts, createDate, addSub}) 
   return (
     <div className="PostItem">
       <div className="Title">
-        {title} {createDate}
+        {title} {isoToRuDate(createDate)}
       </div>
       <ul>
         {subPosts?.map(subPost => <li key={subPost.id}>{subPost.title}</li>)}
