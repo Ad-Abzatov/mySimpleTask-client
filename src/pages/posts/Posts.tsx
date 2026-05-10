@@ -38,9 +38,14 @@ const Posts = () => {
   const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalGrouppOpen, setIsModalGrouppOpen] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true)
+  };
+
+    const openModalGroupp = () => {
+    setIsModalGrouppOpen(true)
   };
 
   const closeModal = () => {
@@ -104,6 +109,14 @@ const Posts = () => {
     }
   }
 
+  const addGroupp = async (data: {title: string | number}) => {
+    const authorId = getUserId();
+    const newGroupp = {title: data.title, authorId};
+    await axios.post('http://localhost:5000/api/post/groups', newGroupp);
+    setTitle('');
+    fetchPosts();
+  }
+
   return (
     <div className="Posts">
       <div className="Header">
@@ -125,6 +138,7 @@ const Posts = () => {
             </div>
           </form> */}
           <ul>
+            <button onClick={openModalGroupp} className="AddPost">Создать группу</button><br />
             <button onClick={openModal} className="AddPost">Добавить задачу</button>
             {posts.map((post) => (
               <li>
@@ -155,6 +169,7 @@ const Posts = () => {
         </div>
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal} onSubmit={addPost} fields={[{name: 'title', type: 'text'}]} title="Новая запись" />
+      <Modal isOpen={isModalGrouppOpen} onClose={closeModal} onSubmit={addGroupp} fields={[{name: 'title', type: 'text'}]} title="Новая запись" />
     </div>
   )
 }
