@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import KebabMenu, { MenuItem } from "../kebabMenu/KebabMenu";
 import "./PostRecord.css"
 
@@ -13,6 +13,7 @@ interface PostRecordProps {
     id: number;
     title: string;
   }[];
+  canSelect?: boolean;
 }
 
 const PostRecord: FC<PostRecordProps> = ({
@@ -22,12 +23,21 @@ const PostRecord: FC<PostRecordProps> = ({
   delPost,
   isSelected = false,
   onSelect,
+  subPosts = [],
+  canSelect = true,
 }) => {
-  const [showSubtasks, setShowSubtasks] = useState(false);
 
-  const toggleSubtasks = () => {
+  const [showSubtasks, setShowSubtasks] = useState(false);
+  const hasSubtasks = subPosts && subPosts.length > 0;
+
+  const toggleSubtasks = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setShowSubtasks(!showSubtasks);
   };
+
+  const handleSubtaskClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  }
 
   const handleUpd = () => {
     updPost(id, title);
@@ -42,23 +52,21 @@ const PostRecord: FC<PostRecordProps> = ({
   ];
 
   return (
-    <div className="PostCard" onClick={onSelect}>
+    <div className="PostCard" onClick={canSelect ? onSelect : undefined}>
+      {hasSubtasks && (
+        <button onClick={toggleSubtasks} aria-label={showSubtasks ? 'Свернуть' : 'Развернуть'}>
+          <span>▶</span>
+        </button>
+      )}
+
+      {hasSubtasks && (
+        <span>({showSubtasks ? subPosts.length : subPosts.length})</span>
+      )}
       <div className="PostContent">
         {title}
-        {/* <div>
-          {
-            showSubtasks && subPosts && subPosts?.length > 0 &&
-              subPosts.map(subPost =>
-            <div key={subPost.id}>{subPost.title}</div>
-              )
-          }
-        </div> */}
       </div>
       <div className="PostActions">
-        {/* <button onClick={toggleSubtasks}>{showSubtasks ? 'Скрыть' : 'Показать'}</button> */}
         <KebabMenu items={menuItems} />
-        {/* <button className="PostButton PostButtonEdit" onClick={handleUpd}>Изменить</button>
-        <button className="PostButton PostButtonDel" onClick={handleDel}>Удалить</button> */}
       </div>
     </div>
   )
