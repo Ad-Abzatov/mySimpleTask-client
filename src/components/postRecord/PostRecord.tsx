@@ -52,22 +52,35 @@ const PostRecord: FC<PostRecordProps> = ({
   ];
 
   return (
-    <div className="PostCard" onClick={canSelect ? onSelect : undefined}>
-      {hasSubtasks && (
-        <button onClick={toggleSubtasks} aria-label={showSubtasks ? 'Свернуть' : 'Развернуть'}>
-          <span>▶</span>
-        </button>
-      )}
+    <div className="PostCard">
+      <div className="PostContent" onClick={canSelect ? onSelect : undefined}>
+        {hasSubtasks && (
+          <button onClick={toggleSubtasks} aria-label={showSubtasks ? 'Свернуть' : 'Развернуть'}>
+            <span>▶</span>
+          </button>
+        )}
 
-      {hasSubtasks && (
-        <span>({showSubtasks ? subPosts.length : subPosts.length})</span>
-      )}
-      <div className="PostContent">
-        {title}
+        <span>{title}</span>
+
+        {hasSubtasks && (
+          <span>({showSubtasks ? subPosts.length : subPosts.length})</span>
+        )}
       </div>
       <div className="PostActions">
         <KebabMenu items={menuItems} />
       </div>
+      {hasSubtasks && (
+        <div className="subtasks-container">
+          <div className="subtasks-content">
+            {subPosts.map(sub => (
+              <div key={sub.id} onClick={handleSubtaskClick}>
+                <span>.</span>
+                <span>{sub.title}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
