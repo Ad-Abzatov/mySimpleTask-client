@@ -18,6 +18,12 @@ interface Post {
   }[];
 }
 
+interface Group {
+  id: number;
+  title: string;
+  posts: Post[];
+}
+
 interface IdField {
   id: number | string
 }
