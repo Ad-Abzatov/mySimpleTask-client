@@ -13,7 +13,11 @@ interface Post {
 
 const GroupItem: FC<Group> = (props) => {
   return (
-    <div></div>
+    <div className="GroupItem">
+      <div className="Title">
+        {props.title}
+      </div>
+    </div>
   )
 }
 
