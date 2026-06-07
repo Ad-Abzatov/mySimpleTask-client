@@ -8,6 +8,10 @@ import "./Posts.css"
 import PostItem from "../../components/postItem/PostItem";
 import Modal from "../../components/modal/Modal";
 
+interface Records {
+  ungrouped?: Post[];
+  groups?: Group[];
+}
 interface Post {
   id: number;
   title: string;
