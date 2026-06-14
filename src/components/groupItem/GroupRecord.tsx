@@ -11,14 +11,14 @@ interface Post {
   title: string;
 }
 
-const GroupItem: FC<Group> = (props) => {
+const GroupRecord: FC<Group> = ({title}) => {
   return (
-    <div className="GroupItem">
+    <div className="GroupRecord">
       <div className="Title">
-        {props.title}
+        {title}
       </div>
     </div>
   )
 }
 
-export default GroupItem
+export default GroupRecord
