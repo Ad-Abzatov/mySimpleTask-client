@@ -7,6 +7,7 @@ import Logo from "../../components/Logo";
 import "./Posts.css"
 import PostItem from "../../components/postItem/PostItem";
 import Modal from "../../components/modal/Modal";
+import GroupRecord from "../../components/groupItem/GroupRecord";
 
 interface Records {
   ungrouped?: Post[];
@@ -44,6 +45,7 @@ const getUserId = () => {
 
 const Posts = () => {
   const [posts, setPosts] = useState<Post[]>([]);
+  const [groups, setGroups] = useState<Group[]>([]);
   const [title, setTitle] = useState('');
   const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
@@ -75,6 +77,11 @@ const Posts = () => {
     } finally {
       setLoading(false);
     }
+  }
+
+  const fetchGroups = async () => {
+    setLoading(true);
+    /// <=======
   }
 
   useEffect(() => {
@@ -152,7 +159,8 @@ const Posts = () => {
             <button onClick={openModal} className="AddPost">Добавить задачу</button>
             {posts.map((post) => (
               <li>
-                <PostRecord
+                <GroupRecord title={post} />
+                {/* <PostRecord
                   title={post.title}
                   id={post.id}
                   updPost={updPost}
@@ -160,7 +168,7 @@ const Posts = () => {
                   subPosts={post.subPosts}
                   isSelected={post.id === selectedPostId}
                   onSelect={() => setSelectedPostId(post.id)}
-                />
+                /> */}
               </li>
             ))}
           </ul>
