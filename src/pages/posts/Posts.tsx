@@ -81,12 +81,26 @@ const Posts = () => {
 
   const fetchGroups = async () => {
     setLoading(true);
-    /// <=======
+    try {
+      const userId = getUserId();
+      const response = await axios.get(`http://localhost:5000/api/post/usergroups/${userId}`);
+      console.log('API response:', response.data);
+      setGroups(response.data);
+    } catch (error) {
+      console.error('Fetch error:', error);
+      setGroups([]);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
     fetchPosts();
   }, []);
+
+  useEffect(() => {
+    fetchGroups();
+  }, []);  
 
   // useEffect(() => {
   //   if (getUserId()) fetchPosts();
@@ -157,9 +171,13 @@ const Posts = () => {
           <ul>
             <button onClick={openModalGroupp} className="AddPost">Создать группу</button><br />
             <button onClick={openModal} className="AddPost">Добавить задачу</button>
-            {posts.map((post) => (
+            {groups.map((group) => (
               <li>
-                <GroupRecord title={post} />
+                <GroupRecord
+                  title={group.title}
+                  id={group.id}
+                  posts={group.posts}
+                />
                 {/* <PostRecord
                   title={post.title}
                   id={post.id}
