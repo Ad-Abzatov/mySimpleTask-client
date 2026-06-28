@@ -100,7 +100,7 @@ const Posts = () => {
 
   useEffect(() => {
     fetchGroups();
-  }, []);  
+  }, []);
 
   // useEffect(() => {
   //   if (getUserId()) fetchPosts();
@@ -172,7 +172,7 @@ const Posts = () => {
             <button onClick={openModalGroupp} className="AddPost">Создать группу</button><br />
             <button onClick={openModal} className="AddPost">Добавить задачу</button>
             {groups.map((group) => (
-              <li>
+              <li key={group.id}>
                 <GroupRecord
                   title={group.title}
                   id={group.id}
@@ -193,14 +193,14 @@ const Posts = () => {
         </div>
         <div className="ItemBoard">
           Задача <br/>
-          {selectedPost ?
+          {/* {selectedPost ?
           <PostItem
             title={selectedPost.title}
             subPosts={selectedPost.subPosts}
             addSub={addSubPost}
             id={selectedPost.id}
             createDate={selectedPost.createDate}
-          /> : null}
+          /> : null} */}
           <button onClick={openModal}>Открыть форму</button>
         </div>
       </div>
