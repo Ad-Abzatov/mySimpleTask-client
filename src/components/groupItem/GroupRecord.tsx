@@ -1,9 +1,12 @@
 import { FC } from "react";
 
 interface Group {
-  id: number;
-  title: string;
-  posts: Post[];
+  ungrouped: {},
+  groups: {
+    id: number;
+    title: string;
+    posts: Post[];
+  }
 }
 
 interface Post {
