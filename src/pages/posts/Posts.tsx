@@ -174,9 +174,8 @@ const Posts = () => {
             {groups.map((group) => (
               <li key={group.id}>
                 <GroupRecord
-                  title={group.title}
-                  id={group.id}
-                  posts={group.posts}
+                ungrouped={}
+                groups={}
                 />
                 {/* <PostRecord
                   title={post.title}
