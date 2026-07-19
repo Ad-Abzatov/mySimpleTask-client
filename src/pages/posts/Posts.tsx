@@ -46,6 +46,7 @@ const getUserId = () => {
 const Posts = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [groups, setGroups] = useState<Group[]>([]);
+  const [record, setRecord] = useState<Records[]>([]);
   const [title, setTitle] = useState('');
   const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
@@ -101,10 +102,6 @@ const Posts = () => {
   useEffect(() => {
     fetchGroups();
   }, []);
-
-  // useEffect(() => {
-  //   if (getUserId()) fetchPosts();
-  // }, []);
 
   const selectedPost = posts.find(post => post.id === selectedPostId) || null;
 
