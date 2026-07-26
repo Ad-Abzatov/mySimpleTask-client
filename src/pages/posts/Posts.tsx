@@ -46,7 +46,7 @@ const getUserId = () => {
 const Posts = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [groups, setGroups] = useState<Group[]>([]);
-  const [record, setRecord] = useState<Records[]>([]);
+  const [records, setRecords] = useState<Records[]>([]);
   const [title, setTitle] = useState('');
   const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
@@ -86,10 +86,10 @@ const Posts = () => {
       const userId = getUserId();
       const response = await axios.get(`http://localhost:5000/api/post/usergroups/${userId}`);
       console.log('API response:', response.data);
-      setGroups(response.data);
+      setRecords(response.data);
     } catch (error) {
       console.error('Fetch error:', error);
-      setGroups([]);
+      setRecords([]);
     } finally {
       setLoading(false);
     }
@@ -168,8 +168,8 @@ const Posts = () => {
           <ul>
             <button onClick={openModalGroupp} className="AddPost">Создать группу</button><br />
             <button onClick={openModal} className="AddPost">Добавить задачу</button>
-            {groups.map((group) => (
-              <li key={group.id}>
+            {records.map((record) => (
+              <li key={record.id}>
                 <GroupRecord
                 ungrouped={}
                 groups={}
