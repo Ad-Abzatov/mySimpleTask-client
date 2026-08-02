@@ -1,7 +1,10 @@
 import { FC } from "react";
 
 interface Group {
-  ungrouped: {},
+  ungrouped: {
+    id: number;
+    title: string;
+  },
   groups: {
     id: number;
     title: string;
