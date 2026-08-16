@@ -17,11 +17,14 @@ interface Post {
   title: string;
 }
 
-const GroupRecord: FC<Group> = ({ungrouped}) => {
+const GroupRecord: FC<Group> = ({ungrouped, groups}) => {
   return (
     <div className="GroupRecord">
-      <div className="Title">
+      <div className="ungroupedTitle">
         {ungrouped.title}
+      </div>
+      <div className="groupsTitle">
+        {groups.title}
       </div>
     </div>
   )
